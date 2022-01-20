@@ -15,7 +15,8 @@ jobs:
     name: AutoRebase
     runs-on: ubuntu-latest
     steps:
-      - uses: Label305/AutoRebase@v0.1
+      - id: autorebase
+        uses: Label305/AutoRebase@v0.1
         with:
           # We can't use the built-in secrets.GITHUB_TOKEN yet because of this limitation:
           # https://github.community/t5/GitHub-Actions/Triggering-a-new-workflow-from-another-workflow/td-p/31676
@@ -26,4 +27,5 @@ jobs:
           #   See https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line.
           github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: git push
-        run: git push --force-with-lease
+        if: ${{ steps.autorebase.output != 0 }}
+        run: echo ${{ steps.autorebase.output }} && git push --force-with-lease
