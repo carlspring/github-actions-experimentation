@@ -17,7 +17,7 @@ on:
 # Currently you cannot use ${{ env.IS_FORK }} for some reason, which is why you might need to copy-paste some of these.
 env:
   REPOSITORY: ${{ github.repository }}
-  IS_FORK: ${{ github.repository != 'carlspring/s3fs-nio' }}
+  IS_FORK: ${{ github.repository != 'carlspring/github-actions-experimentation' }}
   IS_PR: ${{ github.event_name == 'pull_request' }}
   EVENT_NAME: ${{ toJSON(github.event_name) }}
   # format: username:branch
