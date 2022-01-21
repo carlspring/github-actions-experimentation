@@ -12,3 +12,4 @@ git diff --name-only HEAD origin/master -- | sort -u
 # Surprise!
 # This is shocking news!
 # Oh, yes it is!
+# :)
