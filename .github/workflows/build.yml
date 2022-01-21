@@ -38,7 +38,7 @@ jobs:
           fetch-depth: 0
       - name: Detect Changes From Upstream
         id: detect_changes_from_upstream
-        uses: carlspring/detect-branch-changes-action
+        uses: carlspring/detect-branch-changes-action@main
         with:
           pathspec: "scripts"
 
