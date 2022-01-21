@@ -36,11 +36,20 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: Detech Changes From Upstream
+      - name: Detect Changes From Upstream
+        id: detect_changes_from_upstream
         uses: younited/detect-branch-changes-action@v0.1.1
         with:
           pathspec: "scripts"
 
+      - name: Check if changes were detected
+        if: ${{ steps.detect_changes_from_upstream.outputs == "true" }}
+        run: echo "There were changes detected in the upstream branch!"
+
+      - name: Fail if changes were detected
+        if: ${{ steps.detect_changes_from_upstream.outputs == "true" }}
+        run: exit 1
+        
       - name: "Fetch master"
         run: git fetch
         # --update-head-ok
