@@ -43,11 +43,11 @@ jobs:
           pathspec: "scripts"
 
       - name: Check if changes were detected
-        if: ${{ steps.detect_changes_from_upstream.outputs == "true" }}
+        if: steps.detect_changes_from_upstream.outputs.changed == 'true'
         run: echo "There were changes detected in the upstream branch!"
 
       - name: Fail if changes were detected
-        if: ${{ steps.detect_changes_from_upstream.outputs == "true" }}
+        if: steps.detect_changes_from_upstream.outputs.changed == 'true'
         run: exit 1
         
       - name: "Fetch master"
