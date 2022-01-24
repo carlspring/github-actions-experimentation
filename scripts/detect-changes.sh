@@ -16,3 +16,4 @@ git diff --name-only HEAD origin/master -- | sort -u
 # :) :) :) :) :)
 # 1  2  3  4  5
 # 0000000000001
+# Can you read binary or are you a DeadEndian?!
