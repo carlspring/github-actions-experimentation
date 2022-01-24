@@ -38,9 +38,9 @@ jobs:
           fetch-depth: 0
       - name: Detect Changes From Upstream
         id: detect_changes_from_upstream
-        uses: carlspring/detect-branch-changes-action@main
+        uses: younited/detect-branch-changes-action@v0.1.1
         with:
-          pathspec: "scripts"
+          pathspec: "scripts/**"
 
       - name: Check if changes were detected
         if: steps.detect_changes_from_upstream.outputs.changed == 'true'
@@ -50,21 +50,20 @@ jobs:
         if: steps.detect_changes_from_upstream.outputs.changed == 'true'
         run: exit 1
         
-      - name: "Fetch master"
-        run: git fetch
-        # --update-head-ok
-      - name: Show GitHub context
-        run: echo "$EVENT_NAME $REPOSITORY $PR_HEAD_LABEL $IS_PR $IS_FORK"
-      - name: Fetch differences with master branch
-        id: gitChanges
-        run: |
-           git diff --name-only HEAD origin/master -- | sort -u
-#          git rev-list --left-only --count origin/master...$(git branch --show-current)
-      - name: Show changes
-        run: echo "${{ steps.gitChanges.outputs }}"
-      - name: "Rebase if this PR is behind master branch"
-        if: ${{ steps.gitChanges.outputs != 0 }}
-        run: git rebase origin/master
-      - name: "Continue."
-        run: echo "Everything is now up-to-date."
-
+#      - name: "Fetch master"
+#        run: git fetch
+#        # --update-head-ok
+#      - name: Show GitHub context
+#        run: echo "$EVENT_NAME $REPOSITORY $PR_HEAD_LABEL $IS_PR $IS_FORK"
+#      - name: Fetch differences with master branch
+#        id: gitChanges
+#        run: |
+#           git diff --name-only HEAD origin/master -- | sort -u
+##          git rev-list --left-only --count origin/master...$(git branch --show-current)
+#      - name: Show changes
+#        run: echo "${{ steps.gitChanges.outputs }}"
+#      - name: "Rebase if this PR is behind master branch"
+#        if: ${{ steps.gitChanges.outputs != 0 }}
+#        run: git rebase origin/master
+#      - name: "Continue."
+#        run: echo "Everything is now up-to-date."
