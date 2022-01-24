@@ -40,7 +40,7 @@ jobs:
         id: detect_changes_from_upstream
         uses: carlspring/detect-branch-changes-action@main
         with:
-          pathspec: "scripts/**"
+          pathspec: "scripts"
 
       - name: Check if changes were detected
         if: steps.detect_changes_from_upstream.outputs.changed == 'true'
