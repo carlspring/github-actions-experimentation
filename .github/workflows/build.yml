@@ -50,3 +50,4 @@ jobs:
       - name: Fail if changes were detected
         if: steps.detect_changes_from_upstream.outputs.changed == 'true'
         run: exit 1
+        
