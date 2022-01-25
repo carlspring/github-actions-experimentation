@@ -40,6 +40,7 @@ jobs:
         id: detect_changes_from_upstream
         uses: carlspring/detect-branch-changes-action@main
         with:
+          base_branch: remotes/origin/master
           pathspec: "scripts"
 
       - name: Check if changes were detected
