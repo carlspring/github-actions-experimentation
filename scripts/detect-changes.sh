@@ -18,3 +18,4 @@ git diff --name-only HEAD origin/master -- | sort -u
 # 0000000000001
 # Can you read binary or are you a DeadEndian?!
 # foobar
+# barfoo
